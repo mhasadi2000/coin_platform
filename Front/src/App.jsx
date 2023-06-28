@@ -15,7 +15,7 @@ function App() {
   const [percent, setPercent] = useState(0);
 
   const [coinToGetData, setCoinToGetData] = useState("");
-  const [coinData, setCoinData] = useState(null);
+  const [coinData, setCoinData] = useState();
 
   function handleSubscribe(e) {
     e.preventDefault();
@@ -145,7 +145,10 @@ function App() {
               value="Submit"
             />
           </form>
-          {coinData}
+          <br />
+          {coinData?.map((item, index) => (
+            <div key={index}>{item}</div>
+          ))}
         </div>
       </div>
     </>

@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: main-configmap
+data:
+  host: "db-service"
+  database : "mydb"
+  port : "5432"
+  COINNEWSURL : "coinnews:8000"

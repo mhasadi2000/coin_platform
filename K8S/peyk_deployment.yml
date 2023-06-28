@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: peyk-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: peyk-app
+  template:
+    metadata:
+      labels:
+        app: peyk-app
+    spec:
+      containers:
+        - name: peyk
+          image: # to fill
+          envFrom:
+            - configMapRef:
+                name: main-configmap
+          env:
+            - name: username
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: username
+            - name: password
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: password
+          ports:
+            - containerPort: 5432
