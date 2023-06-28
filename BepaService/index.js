@@ -19,7 +19,7 @@ function executeCode(data) {
   };
   axios(config)
     .then(async function (response) {
-      // console.log(JSON.stringify(response.data));
+      console.log(JSON.stringify(response.data));
 
       var resultsupdate = await prisma.rates.update({
         data: {
@@ -35,17 +35,20 @@ function executeCode(data) {
       var users = await prisma.users.findMany({
         where: {
           coin_name: data,
-          difference_percentage: {
-            gte: 9//Math.abs(response.data.roc),
-          },
+          // difference_percentage: {
+          //   gte: 0.71//Math.abs(parseFloat(response.data.roc)),
+          // },
         },
       });
 
-      console.log("users" + users);
+      // console.log("users: " + users);
 
-      // for (u in users) {
-      //send email
-      // }
+      users.forEach((row)=>{
+        if(Math.abs(row.difference_percentage)>= Math.abs(parseFloat(response.data.roc))){
+          console.log("HINT: ",row);
+        }
+      })
+      
     })
     .catch(async function (error) {
       console.log(error);

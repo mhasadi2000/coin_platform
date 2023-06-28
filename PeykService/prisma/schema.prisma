@@ -7,16 +7,16 @@ datasource db {
   url      = env("POSTGRES_URI")
 }
 
-model users {
-  id                    Int     @id @default(autoincrement())
-  email                 String  
-  coin_name             String?
-  difference_percentage Int?
-}
-
 model rates {
   id        Int       @id @default(autoincrement())
   coin_name String    @unique
   timestamp DateTime?
   price     Float?
+}
+
+model users {
+  id                    Int     @id @default(autoincrement())
+  email                 String  @unique
+  coin_name             String?
+  difference_percentage Int?
 }
