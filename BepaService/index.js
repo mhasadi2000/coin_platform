@@ -51,13 +51,13 @@ function executeCode(data) {
         ) {
           console.log("HINT: ", row);
 
-          const mailData = {
-            from: "Mailgun Sandbox <postmaster@sandbox0915fa6b8b9b4db99e4be5b8c3fbc6e5.mailgun.org>",
-            to: [row.email],
-            subject: row.coin_name + "Alert",
-            text: response.data,
-          };
-          mailgunConfig.messages().send(mailData);
+          // const mailData = {
+          //   from: "Mailgun Sandbox <postmaster@sandbox0915fa6b8b9b4db99e4be5b8c3fbc6e5.mailgun.org>",
+          //   to: [row.email],
+          //   subject: row.coin_name + "Alert",
+          //   text: response.data,
+          // };
+          // mailgunConfig.messages().send(mailData);
         }
       });
     })
@@ -103,7 +103,7 @@ function start() {
       .catch(async function (error) {
         console.log(error);
       });
-  }, 10000);
+  }, 20000);
 }
 
 start();
