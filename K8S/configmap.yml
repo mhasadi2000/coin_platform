@@ -4,6 +4,6 @@ metadata:
   name: main-configmap
 data:
   host: "db-service"
-  database : "mydb"
+  database : "coindb"
   port : "5432"
   COINNEWSURL : "coinnews:8000"

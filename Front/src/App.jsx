@@ -20,10 +20,10 @@ function App() {
   function handleSubscribe(e) {
     e.preventDefault();
     axios
-      .post(apiUrl, {
+      .post(apiUrl + "subscribe", {
         email: email,
-        coin: coin,
-        percent: percent,
+        coin_name: coin,
+        difference_percentage: percent,
       })
       .then((res) => {
         if (res.status) {
@@ -37,7 +37,10 @@ function App() {
   function handleGetCoin(e) {
     e.preventDefault();
     axios
-      .get(apiUrl + coinToGetData)
+      .get(apiUrl + "data/" + coinToGetData + "/history")
+      // .post(apiUrl + "price", {
+      // coin_name: coinToGetData,
+      // })
       .then((res) => {
         if (res.status) {
           setCoinData(res.data);
@@ -55,11 +58,60 @@ function App() {
           height: "100vh",
           display: "flex",
           alignItems: "start",
+          backgroundColor: "white",
         }}
       >
         <div
           style={{
-            width: "30%",
+            width: "40%",
+            padding: "0 5%",
+          }}
+        >
+          <form
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "1rem",
+              textAlign: "center",
+            }}
+            onSubmit={handleGetCoin}
+          >
+            <h2>Coin History</h2>
+            <input
+              style={inputStyles}
+              type="text"
+              placeholder="Coin Name"
+              value={coinToGetData}
+              onChange={(e) => setCoinToGetData(e.target.value)}
+              required
+            />
+            <input
+              style={{
+                ...inputStyles,
+                boxSizing: "content-box",
+                cursor: "pointer",
+                backgroundColor: "#22f",
+              }}
+              type="submit"
+              value="Submit"
+            />
+          </form>
+          <br />
+          {coinData?.map((item, index) => (
+            <div
+              key={index}
+              style={{
+                fontSize: "12px",
+              }}
+            >
+              <span>date: {item.date}</span>&nbsp;
+              <span>| value: {item.value}</span>
+            </div>
+          ))}
+        </div>
+        <div
+          style={{
+            width: "35%",
             padding: "0 5%",
           }}
         >
@@ -110,45 +162,6 @@ function App() {
               value="Submit"
             />
           </form>
-        </div>
-        <div
-          style={{
-            width: "50%",
-          }}
-        >
-          <form
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "1rem",
-              textAlign: "center",
-            }}
-            onSubmit={handleGetCoin}
-          >
-            <h2>Coin History</h2>
-            <input
-              style={inputStyles}
-              type="text"
-              placeholder="Coin Name"
-              value={coinToGetData}
-              onChange={(e) => setCoinToGetData(e.target.value)}
-              required
-            />
-            <input
-              style={{
-                ...inputStyles,
-                boxSizing: "content-box",
-                cursor: "pointer",
-                backgroundColor: "#22f",
-              }}
-              type="submit"
-              value="Submit"
-            />
-          </form>
-          <br />
-          {coinData?.map((item, index) => (
-            <div key={index}>{item}</div>
-          ))}
         </div>
       </div>
     </>

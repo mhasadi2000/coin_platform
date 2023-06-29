@@ -6,7 +6,7 @@ const DATABASE_URL="postgresql://root:ikvAeDpXuutsZBnzV5IE8PTe@billy.iran.liara.
 
 
 
-const END_POINT="http://localhost:8000";
+const END_POINT="http://localhost:8080";
 // const BUCKET_NAME="service-provider";
 // const ACCESS_KEY="7158acb4-1634-4f2f-9d43-91521ff8a1a0";
 // const SECRET_KEY="36a727c0ea01355c4f5a4504ede17e5f071f082d";

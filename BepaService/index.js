@@ -6,6 +6,8 @@ const { PrismaClient } = require("@prisma/client");
 const { BadRequestError } = require("./errors");
 const { log } = require("console");
 const prisma = new PrismaClient();
+const formData = require("form-data");
+const Mailgun = require("mailgun.js");
 
 function executeCode(data) {
   console.log(data);
@@ -43,12 +45,29 @@ function executeCode(data) {
 
       // console.log("users: " + users);
 
-      users.forEach((row)=>{
-        if(Math.abs(row.difference_percentage)>= Math.abs(parseFloat(response.data.roc))){
-          console.log("HINT: ",row);
+      users.forEach((row) => {
+        if (
+          Math.abs(row.difference_percentage) >=
+          Math.abs(parseFloat(response.data.roc))
+        ) {
+          console.log("HINT: ", row);
+
+          const mailgun = new Mailgun(formData);
+          const mg = mailgun.client({
+            username: "api",
+            key: "8908bb78e093db1bc9db0f07e3416593-e5475b88-6adda65b",
+          });
+          mg.messages
+            .create(sandbox0915fa6b8b9b4db99e4be5b8c3fbc6e5.mailgun.org, {
+              from: "Mailgun Sandbox <postmaster@sandbox0915fa6b8b9b4db99e4be5b8c3fbc6e5.mailgun.org>",
+              to: ["asadmhid@gmail.com"],
+              subject: "Coin Alert",
+              text: row.toString(),
+            })
+            .then((msg) => console.log(msg)) // logs response data
+            .catch((err) => console.log(err)); // logs any error
         }
-      })
-      
+      });
     })
     .catch(async function (error) {
       console.log(error);
@@ -65,7 +84,7 @@ function start() {
       },
     };
     var coins = [];
-    var rateTable=null;
+    var rateTable = null;
     axios(config)
       .then(async function (response) {
         // console.log(JSON.stringify(response.data));
