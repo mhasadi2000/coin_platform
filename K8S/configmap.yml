@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: main-configmap
 data:
+  END_POINT : "coinnews:8000"
   host: "db-service"
   database : "coindb"
-  port : "5432"
-  COINNEWSURL : "coinnews:8000"
+  port : "5000"

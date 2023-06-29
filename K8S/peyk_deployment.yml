@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: peyk-app
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: peyk-app
@@ -30,4 +30,4 @@ spec:
                   name: db-secret
                   key: password
           ports:
-            - containerPort: 5432
+            - containerPort: 5000
