@@ -37,10 +37,10 @@ function App() {
   function handleGetCoin(e) {
     e.preventDefault();
     axios
-      .get(apiUrl + "data/" + coinToGetData + "/history")
-      // .post(apiUrl + "price", {
-      // coin_name: coinToGetData,
-      // })
+      // .get(apiUrl + "data/" + coinToGetData + "/history")
+      .post(apiUrl + "price", {
+        coin_name: coinToGetData,
+      })
       .then((res) => {
         if (res.status) {
           setCoinData(res.data);

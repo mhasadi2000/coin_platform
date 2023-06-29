@@ -10,7 +10,7 @@ spec:
         spec:
           containers:
             - name: bepa
-              image: # to fill
+              image: mohasan/bepa-image
               envFrom:
                 - configMapRef:
                     name: main-configmap

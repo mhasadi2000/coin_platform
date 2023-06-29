@@ -28,7 +28,6 @@
     "class-validator": "^0.14.0",
     "fastify": "^4.10.2",
     "fastify-axios": "^1.2.5",
-    "fastify-mailgun": "^1.0.0",
     "fastify-multer": "^2.0.3",
     "jsonwebtoken": "^9.0.0",
     "lodash": "4.17.21",

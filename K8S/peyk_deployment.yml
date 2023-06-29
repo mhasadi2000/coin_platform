@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: peyk
-          image: # to fill
+          image: mohasan/peyk-image
           envFrom:
             - configMapRef:
                 name: main-configmap
