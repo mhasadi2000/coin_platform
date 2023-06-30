@@ -21,9 +21,9 @@ function App() {
     e.preventDefault();
     axios
       .post(apiUrl + "subscribe", {
-        email: email,
+        email_addr: email,
         coin_name: coin,
-        difference_percentage: percent,
+        price_change: percent,
       })
       .then((res) => {
         if (res.status) {
@@ -37,7 +37,6 @@ function App() {
   function handleGetCoin(e) {
     e.preventDefault();
     axios
-      // .get(apiUrl + "data/" + coinToGetData + "/history")
       .post(apiUrl + "price", {
         coin_name: coinToGetData,
       })
