@@ -43,7 +43,7 @@ function App() {
       })
       .then((res) => {
         if (res.status) {
-          setCoinData(res.data);
+          setCoinData(res.data.data);
         }
       })
       .catch((err) => {
@@ -104,8 +104,8 @@ function App() {
                 fontSize: "12px",
               }}
             >
-              <span>date: {item.date}</span>&nbsp;
-              <span>| value: {item.value}</span>
+              <span>date: {item?.date}</span>&nbsp;
+              <span>| value: {item?.value}</span>
             </div>
           ))}
         </div>
