@@ -23,7 +23,7 @@ function App() {
       .post(apiUrl + "subscribe", {
         email_addr: email,
         coin_name: coin,
-        price_change: percent,
+        price_change: parseInt(percent),
       })
       .then((res) => {
         if (res.status) {
