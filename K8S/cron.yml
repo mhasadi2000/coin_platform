@@ -25,6 +25,6 @@ spec:
                     secretKeyRef:
                       name: db-secret
                       key: password
-              command: ["python3"]
-              args: ["bepa.py"]
+              command: ["node"]
+              args: ["index.js"]
           restartPolicy: OnFailure
